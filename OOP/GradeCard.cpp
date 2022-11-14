@@ -55,7 +55,7 @@ class grade
 		    asm2,
 		    toi,
 		    ese,
-		    total,
+		    total;
 		    
 		void entermarks()
 		{
@@ -96,17 +96,17 @@ class grade
 			{
 				gpa=10;
 			}
-			else if(8<x<9);
+			else if(8<x<9)
 			{
 				gpa=9;
 			}
-			else if(7<x<8);
+			else if(7<x<8)
 			{
 				gpa=8;
 			}
 			else
 			{
-				continue;
+				
 			}
 		}
 		
@@ -146,10 +146,20 @@ class grade
 			
 int main()
 {
-	gradeCard gd1;
+	grade gd1;
 	student st1;
-	teacher tchr1;
-}			
-			
-			
-			
+	teacher tc1;
+	
+	st1.getpersonaldetails();
+	
+	st1.putpersonaldetails();
+	
+	tc1.getpersonaldetails();
+	
+	tc1.putpersonaldetails();
+	
+	gd1.entermarks();
+	
+	gd1.viewgradecard();
+	
+}	
