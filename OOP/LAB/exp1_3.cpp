@@ -30,7 +30,7 @@ class employee
 				it=basic*0.3;
 			}
 			netsalary=basic+da-it;
-			cout<<" The net salary is "<<netsalary<<endl;
+			
 		}
 			
 		
@@ -66,11 +66,13 @@ class employee
 			
 			cout<<" Basic Salary :"<<basic<<endl;
 			
+			compute();
+			
 			cout<<" Dearness allowance :"<<da<<endl;
 			
 			cout<<" Income Tax :"<<it<<endl;
 			
-			compute();
+			cout<<" The net salary is "<<netsalary<<endl;
 		}
 		
 		employee()
@@ -95,4 +97,4 @@ int main()
 		x[i].putdata();
 		cout<<endl;
 	}
-}	
+}
