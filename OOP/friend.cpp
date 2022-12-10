@@ -7,7 +7,7 @@ class student
 		int rno;
 		string name;
 		
-		void getdatas()
+		void inputdatas()
 		{
 			
 			cout<<" Enter rollno of student:";
@@ -20,7 +20,7 @@ class student
 			
 		}
 		
-		void putdatas()
+		void printdatas()
 		{
 			cout<<" RollNo of student :"<<rno<<endl;
 			
@@ -28,19 +28,16 @@ class student
 			
 		}
 		friend class result;
-		friend class internal;
-		friend class external;
-		
 };
 
-class internal:public student
+class intern:public student
 {
 	public:
 		int ia1;
 		int ia2;
 		int ia3;
 		
-		void getdatai(student &t)
+		void inputdatai()
 		{
 			
 			cout<<" Enter IA mark 1:";
@@ -56,13 +53,13 @@ class internal:public student
 			cout<<endl;
 		}
 		
-		void putdatai(student &t)
+		void printdatai()
 		{
-			cout<<" IA mark 1: :"<<t.ia1<<endl;
+			cout<<" IA mark 1: :"<<ia1<<endl;
 			
-			cout<<" IA mark 2: :"<<t.ia2<<endl;
+			cout<<" IA mark 2: :"<<ia2<<endl;
 
-			cout<<" IA mark 3: :"<<t.ia3<<endl;
+			cout<<" IA mark 3: :"<<ia3<<endl;
 			
 		}
 		friend class result;
@@ -72,49 +69,53 @@ class external:public student
 {
 	 public:
 	 	int ese;
-	 	void getdatae(student &t)
+	 	void inputdatae()
 		{
 			
 			cout<<" Enter ESE mark:";
-			cin>>t.ese;
+			cin>>ese;
 			cout<<endl;
 
 		}
 		
-		void putdatae(student &t)
+		void printdatae()
 		{
-			cout<<" ESE mark: :"<<t.ese<<endl;
+			cout<<" ESE mark: :"<<ese<<endl;
 			
 		}
+		friend class result;
 };
 
-class result:public student,public internal, public external
+class result:public external,public intern
 {
 	public:
 		int total;
-		void compute(student &t)
+		void compute(intern &i,external &e)
 		{
-			t.total=t.ia1+t.ia2+t.ia3+t.ia3+t.ese;
+			total=i.ia1+i.ia2+i.ia3+i.ia3+e.ese;
 		}
 		
-		void display(student &t)
+		void display()
 		{
-			cout<<" Total mark is :"<<t.total<<endl;
+			cout<<" Total mark is :"<<total<<endl;
 		}
-		friend class internal;
-		friend class external;
+		
 		
 };
 
 int main()
 {
 	student s1;
+	intern i1;
+	external e1;
 	result tot;
-	s1.getdatas();
-	s1.putdatas();
-	s1.getdatai();
-	s1.putdatai();
-	tot.compute(s1);
-	tot.display;
+	s1.inputdatas();
+	s1.printdatas();
+	i1.inputdatai();
+	i1.printdatai();
+	e1.inputdatae();
+	e1.printdatae();
+	tot.compute(i1,e1);
+	tot.display();
+
 }
-	
