@@ -116,6 +116,36 @@ class cteacher
 				t.ests="True";
 			}
 		}
+		
+		void showRanklist(student t[])
+		{
+			int i,j,n=5;
+			student temp;
+
+			for(i=0;i<n;i++)
+			{
+				for(j=i+1;j<n;j++)
+				{
+					if(t[i].cgpa<t[j].cgpa)
+					{
+						temp =t[i];
+						t[i]=t[j];
+						t[j]=temp;
+					}
+				}
+			}
+			cout<<"\nRANK LIST:"<<endl;
+			cout<<"STDID  CGPA  Rank "<<endl;
+			int rank=1;
+			for(i=0;i<n;i++)
+			{
+				cout<<rank<<"\t"<<t[i].cgpa<<"\t"<<t[i].stdid<<endl;
+				rank+=1;
+			}
+			cout<<endl;
+		}
+	
+
 			
 };
 
@@ -199,7 +229,7 @@ class steacher
 int main()
 {
 	int i,j;
-	student std[3];
+	student std[5];
 	steacher st[3];
 	cteacher ct;
 	
@@ -214,7 +244,7 @@ int main()
 	}
 	
 	cout<<" Enter details of student :"<<endl;
-	for(i=0;i<3;i++)
+	for(i=0;i<5;i++)
 	{
 		std[i].getdatas();
 		for(j=0;j<3;j++)
@@ -227,8 +257,9 @@ int main()
 		ct.eligibility(std[i]);
 	}
 	
-	for(i=0;i<3;i++)
+	for(i=0;i<5;i++)
 	{
 		std[i].displaycards();
 	}
+	ct.showRanklist(std);
 }	
