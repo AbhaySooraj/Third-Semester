@@ -1,16 +1,17 @@
 #include<iostream>
+#include<stdlib.h>
 using namespace std;
 
 class point
 {
 	private:
-		int x,y
+		int x,y;
 		
 	public:	
 		point()
 		{
-			x=0;
-			y=0;
+			x=10;
+			y=20;
 		}
 		
 		point(int a, int b)
@@ -41,12 +42,12 @@ class point
 			x=a;
 			y=b;
 			z=x+y;
-			cout<<"SUM: "<<endl;
+			cout<<"SUM: "<<z<<endl;
 		}
 		
 		void sum(int a)
 		{
-			int num=a,i,sum;
+			int num=a,i,sum=0;
 			while (num>0)
 			{
 				i=num%10;
@@ -59,10 +60,11 @@ class point
 
 int main()
 {
-	int opt
+	point obj;
+	int opt,a,b;
 	while(1)
 	{
-		cout<<" \n\n\n MENU \n PRESS 1 FOR SUM OF X & Y \n PRESS 2 FOR SUM OF X/Y \n PRESS 3 TO EXIT \n ENTER YOUR CHOICE ";
+		cout<<" \n\n\n MENU \n PRESS 1 TO ENTER X \n PRESS 2 TO ENTER Y \n PRESS 3 TO ENTER X&Y\n PRESS 4 SUM \n PRESS 5 FOR SUM OF DIGITS \n PRESS 6 TO EXIT \n ENTER YOUR CHOICE ";
 		cin>>opt;
 		
 		switch(opt)
@@ -70,9 +72,55 @@ int main()
 			case 1:
 			{	
 				cout<<" ENTER X :";
+				cin>>a;
+				obj.setX(a);
+				break;
+			}
+			
+			case 2:
+			{
+				cout<<" ENTER Y :";
+				cin>>b;
+				obj.setY(b);
+				break;
+			}
+			
+			case 3:
+			{
 				
-		 
-		
-		
-		
-		
+				cout<<" ENTER X :";
+				cin>>a;
+				cout<<" ENTER Y :";
+				cin>>b;
+				obj.setXY(a,b);
+				break;
+			}
+			
+			case 4:
+			{	
+				obj.sum(a,b);
+				break;
+			}
+			
+			case 5:
+			{
+				obj.sum(a);
+				obj.sum(b);
+				break;
+			}
+			
+			case 6:
+			{
+				exit(0);
+			}
+			
+			default:
+			{
+				cout<<" WRONG OPTION !!! :";
+			}
+		}
+	}
+};
+				
+				
+				
