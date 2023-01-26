@@ -17,9 +17,9 @@ class account
 		}
 		
 		friend void showbalance(account,cur_acct,sav_acct);
-		friend void deposit(account ,cur_acct );
-		friend void interest(account , sav_acct );
-		friend void withdraw(account , cur_acct );
+		friend int deposit(account ,cur_acct );
+		friend int interest(account , sav_acct );
+		friend int withdraw(account , cur_acct );
 };
 
 
@@ -34,9 +34,9 @@ class cur_acct
 		}
 		
 		friend void showbalance(account,cur_acct,sav_acct);
-		friend void deposit(account ,cur_acct );
-		friend void interest(account , sav_acct );
-		friend void withdraw(account , cur_acct );
+		friend int deposit(account ,cur_acct );
+		friend int interest(account , sav_acct );
+		friend int withdraw(account , cur_acct );
 		
 		
 };
@@ -52,9 +52,9 @@ class sav_acct
 		}
 		
 		friend void showbalance(account,cur_acct,sav_acct);
-		friend void deposit(account ,cur_acct );
-		friend void interest(account , sav_acct );
-		friend void withdraw(account , cur_acct );
+		friend int deposit(account ,cur_acct );
+		friend int interest(account , sav_acct );
+		friend int withdraw(account , cur_acct );
 };
 	
 void showbalance(account a,cur_acct b,sav_acct c)
@@ -66,27 +66,30 @@ void showbalance(account a,cur_acct b,sav_acct c)
 	cout<<" Savings Account :"<<c.samt<<endl;
 }
 
-void deposit(account a,cur_acct b)
+int deposit(account a,cur_acct b)
 {
 	int damt;
 	cout<<" Enter amount to be deposited :";
 	cin>>damt;
 	b.camt=b.camt+damt;
+	return b.camt;
 }
 
-void interest(account a , sav_acct c)
+int interest(account a , sav_acct c)
 {
 	int iamt;
 	iamt=c.samt*0.1;
 	c.samt=c.samt+iamt;
+	return c.samt;
 }
 
-void withdraw(account a, cur_acct b)
+int withdraw(account a, cur_acct b)
 {
 	int wamt;
 	cout<<" Enter amount to be withrawn :";
 	cin>>wamt;
 	b.camt=b.camt-wamt;
+	return b.camt;
 }		
 
 int main()
@@ -106,8 +109,8 @@ int main()
 		{
 			case 1:
 			{	
-				deposit(obj1 ,obj2);
-				break;
+				obj2.camt = deposit(obj1 ,obj2);
+    				break;
 			}
 			
 			case 2:
@@ -118,14 +121,14 @@ int main()
 			
 			case 3:
 			{
-				interest(obj1 , obj3 );
+				obj3.samt=interest(obj1 , obj3 );
 				break;
 			}
 			
 			case 4:
 			{
-				withdraw(obj1 , obj2 );
-				break;
+				obj2.camt = withdraw(obj1 ,obj2);
+    				break;
 			}
 			
 			case 5:
