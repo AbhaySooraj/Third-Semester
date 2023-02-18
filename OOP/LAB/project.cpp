@@ -1,64 +1,148 @@
 #include <iostream>
-#include <vector>
+#include<stdlib.h>
+using namespace std;
+static int count[600];
 
-class Token {
- public:
-  Token(int level, int place) : level_(level), place_(place) {}
+class space
+{
+	public:
+		bool parking[6][100];
+		
+		space()
+		{
+			for(int i=0;i<6;i++)
+			{
+				for(int j=0;j<100;j++)
+				{
+					parking[i][j]= false;
+				}
+			}
+		}
+		
+		bool checkslot()
+		{
+			for(int i=0;i<6;i++)
+			{
+				for(int j=0;j<100;j++)
+				{
+					if(parking[i][j]==false)
+					{
+						return true;
+					}
+					
+				}
+			}
+			return false;
+		}
+		void freeslot(int i,int j)
+		{
+			parking[i][j]=false;
+			cout<<"\n SLOT FREED ";
+		}
+		
+		
+};
+	
 
-  int getLevel() const { return level_; }
-  int getPlace() const { return place_; }
-
- private:
-  int level_;
-  int place_;
+class token:public space
+{
+	public:
+		
+		int level,slot,hours;
+		int i=0, j=0;
+  		void issuetoken()
+  		{
+  			
+  			bool found = false;
+  			for(int i=0;i<6 && !found;i++)
+			{
+				for(int j=0;j<100;j++)
+				{
+	  				if(parking[i][j]==false)
+					{
+						level=i;
+						slot=j;
+						parking[i][j]=true;
+						found=true;
+						break;						
+					}
+				}
+			}
+		}
+		
+  		void gettoken()
+  		{
+  			if(checkslot()==true)
+  			{
+  				issuetoken();
+  				cout<<" \n TOKEN ISSUED AT LEVEL :"<<level<<" SLOT :"<<slot<< " TOKEN NO: "<<count<<endl;
+  			}
+  			else
+  			{
+  				cout<<" Parking Full !!!";
+  			}
+  				
+  		}
+  		void parkingamount()
+  		{
+  			cout<<" Enter no of hours parked :";
+  			cin>>hours;
+  			fees();
+  			
+  		}
+  		
+  		void fees()
+		{
+			cout<<" The parking fees is :";
+			if(hours<=0)
+			{
+				cout<<"30";
+			}
+			
+			else 
+			{
+				cout<<30+hours*10;
+			}
+			freeslot(level,slot);	
+		}		
 };
 
-class Parking {
- public:
-  Parking()
-      : levels_(6),
-        places_per_level_(100),
-        occupied_places_(levels_, std::vector<bool>(places_per_level_, false)) {}
 
-  Token allocatePlace() {
-    for (int level = 0; level < levels_; ++level) {
-      for (int place = 0; place < places_per_level_; ++place) {
-        if (!occupied_places_[level][place]) {
-          occupied_places_[level][place] = true;
-          return Token(level, place);
-        }
-      }
-    }
-    throw std::runtime_error("No parking place available");
-  }
 
-  void releasePlace(const Token& token) {
-    if (occupied_places_[token.getLevel()][token.getPlace()]) {
-      occupied_places_[token.getLevel()][token.getPlace()] = false;
-    } else {
-      throw std::runtime_error("Place already released");
-    }
-  }
 
- private:
-  int levels_;
-  int places_per_level_;
-  std::vector<std::vector<bool>> occupied_places_;
-};
-
-int main() {
-  Parking parking;
-
-  try {
-    Token token = parking.allocatePlace();
-    std::cout << "Parking place allocated at level " << token.getLevel()
-              << " and place " << token.getPlace() << std::endl;
-
-    parking.releasePlace(token);
-    std::cout << "Parking place released" << std::endl;
-  } catch (const std::runtime_error& e) {
-    std::cout << e.what() << std::endl;
-  }
-
-  return 0;
+int main()
+{
+	int op,t;
+	token obj1[600];
+	
+	while(1)
+	{
+		cout<<" \n\n MENU \n PRESS 1 TO ENTER \n PRESS 2 TO EXIT \n ENTER YOUR OPTION :";
+		cin>>op;
+		switch(op)
+		{
+			case 1:
+			{
+				
+				obj1[count].gettoken();
+				break;
+			}
+			case 2:
+			{
+				cout<<" Enter Token No :";
+				cin>>t;
+				obj1[t].parkingamount();
+				break;
+			}
+			case 3:
+			{
+				exit(0);
+			}
+			default:
+			{
+				cout<<" WRONG OPTION!!!";
+			}
+		}
+	}
 }
+
