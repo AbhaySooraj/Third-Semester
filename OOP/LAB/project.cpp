@@ -1,7 +1,7 @@
 #include <iostream>
 #include<stdlib.h>
 using namespace std;
-static int count[600];
+
 
 class space
 {
@@ -75,7 +75,7 @@ class token:public space
   			if(checkslot()==true)
   			{
   				issuetoken();
-  				cout<<" \n TOKEN ISSUED AT LEVEL :"<<level<<" SLOT :"<<slot<< " TOKEN NO: "<<count<<endl;
+  				cout<<" \n TOKEN ISSUED AT LEVEL :"<<level<<" SLOT :"<<slot<<endl;
   			}
   			else
   			{
@@ -112,8 +112,8 @@ class token:public space
 
 int main()
 {
-	int op,t;
-	token obj1[600];
+	int op;
+	token obj1;
 	
 	while(1)
 	{
@@ -124,14 +124,14 @@ int main()
 			case 1:
 			{
 				
-				obj1[count].gettoken();
+				obj1.gettoken();
 				break;
 			}
 			case 2:
 			{
 				cout<<" Enter Token No :";
 				cin>>t;
-				obj1[t].parkingamount();
+				obj1.parkingamount();
 				break;
 			}
 			case 3:
@@ -145,4 +145,3 @@ int main()
 		}
 	}
 }
-
