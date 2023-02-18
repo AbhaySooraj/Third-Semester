@@ -14,7 +14,7 @@ class space
 			{
 				for(int j=0;j<100;j++)
 				{
-					parking[i][j]= true;
+					parking[i][j]= false;
 				}
 			}
 		}
