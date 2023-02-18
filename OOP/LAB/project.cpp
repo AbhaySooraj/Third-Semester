@@ -14,7 +14,7 @@ class space
 			{
 				for(int j=0;j<100;j++)
 				{
-					parking[i][j]= false;
+					parking[i][j]= true;
 				}
 			}
 		}
@@ -129,8 +129,6 @@ int main()
 			}
 			case 2:
 			{
-				cout<<" Enter Token No :";
-				cin>>t;
 				obj1.parkingamount();
 				break;
 			}
